@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 // Ensure that './slices/companySlice.ts' exists, or update the path below if the file is elsewhere.
-import companyReducer from './slices/companySlice';
+// import companyReducer from './slices/companySlice';
+import authReducer from "../features/auth/authSlice"; // <-- import your auth slice
 
 export const store = configureStore({
   reducer: {
-    company: companyReducer,
+    // company: companyReducer,
+    auth: authReducer,
   },
 });
 
