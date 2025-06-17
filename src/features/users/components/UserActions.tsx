@@ -1,4 +1,4 @@
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import { Button } from "./../../../components/ui/button";
 import ConfirmDeleteDialog from "./../../../components/confirm/ConfirmDeleteDialog";
 import UserFormModal from "./UserFormModal";

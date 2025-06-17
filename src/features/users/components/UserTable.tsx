@@ -1,4 +1,3 @@
-// src/features/users/components/UserTable.tsx
 import {
   Table,
   TableBody,
@@ -9,15 +8,14 @@ import {
 } from "./../../../components/ui/table";
 import { Input } from "./../../../components/ui/input";
 import { Button } from "./../../../components/ui/button";
-import { useUsersQuery } from "../userApi";
+import { useUsersQuery } from "./../userApi";
 import UserFormModal from "./UserFormModal";
 import UserActions from "./UserActions";
-import { Badge } from "./../../../components/ui/badge";
 import { useState } from "react";
 import { Search, Filter } from "lucide-react";
 
 export default function UserTable() {
-  const { data: users, isLoading } = useUsersQuery();
+  const { data: users = [], isLoading } = useUsersQuery();
   const [search, setSearch] = useState("");
 
   const getStatusBadge = (status: string) => {
@@ -83,7 +81,9 @@ export default function UserTable() {
           </TableHeader>
           <TableBody>
             {users
-              .filter((u) => u.name.toLowerCase().includes(search.toLowerCase()))
+              .filter((u) =>
+                u.name?.toLowerCase().includes(search.toLowerCase())
+              )
               .map((user) => (
                 <TableRow key={user.id} className="hover:bg-muted/50">
                   <TableCell>
@@ -93,8 +93,8 @@ export default function UserTable() {
                     {user.name}
                   </TableCell>
                   <TableCell className="capitalize">{user.role}</TableCell>
-                  <TableCell>{user.department || "-"}</TableCell>
-                  <TableCell>{getStatusBadge(user.status)}</TableCell>
+                  <TableCell>Management</TableCell>
+                  <TableCell>{getStatusBadge("Active")}</TableCell>
                   <TableCell className="text-right">
                     <UserActions user={user} />
                   </TableCell>
@@ -106,10 +106,18 @@ export default function UserTable() {
 
       {/* Pagination (Basic Placeholder) */}
       <div className="flex justify-end gap-2 pt-2">
-        <Button variant="ghost" size="sm" disabled>Prev</Button>
-        <Button variant="default" size="sm">1</Button>
-        <Button variant="ghost" size="sm">2</Button>
-        <Button variant="ghost" size="sm">Next</Button>
+        <Button variant="ghost" size="sm" disabled>
+          Prev
+        </Button>
+        <Button variant="default" size="sm">
+          1
+        </Button>
+        <Button variant="ghost" size="sm">
+          2
+        </Button>
+        <Button variant="ghost" size="sm">
+          Next
+        </Button>
       </div>
     </div>
   );

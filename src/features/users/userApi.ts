@@ -31,7 +31,7 @@ export const useUpdateUser = () => {
     onSuccess: () => queryClient.invalidateQueries({queryKey: ["users"]}),
   });
 };
-// src/features/users/userApi.ts
+
 export const useDeleteUser = () => {
   const queryClient = useQueryClient();
   return useMutation({
